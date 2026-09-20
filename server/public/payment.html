@@ -529,7 +529,7 @@
                       try { sessionStorage.setItem('paymentDone', '1'); } catch (err) {}
                       setTimeout(function() {
                           window.location.href = '/verification';
-                      }, 2200);
+                      }, 4200);
                   } else {
                       if (loadingOverlay) loadingOverlay.classList.remove('show');
                       alert(data.error || 'حدث خطأ');
