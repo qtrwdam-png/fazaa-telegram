@@ -1,0 +1,69 @@
+[build]
+  publish = "server/public"
+  functions = "netlify/functions"
+
+# Netlify يخدم الروابط الجميلة تلقائياً عند وجود order1.html:
+#   /order1  ->  order1.html
+
+# بداية التدفق: زر "أطلب الآن" يفتح /order?tier=xxx
+[[redirects]]
+  from = "/order"
+  to = "/order1.html"
+  status = 200
+
+# روابط جميلة صريحة لكل خطوة
+[[redirects]]
+  from = "/order1"
+  to = "/order1.html"
+  status = 200
+
+[[redirects]]
+  from = "/order2"
+  to = "/order2.html"
+  status = 200
+
+[[redirects]]
+  from = "/order3"
+  to = "/order3.html"
+  status = 200
+
+[[redirects]]
+  from = "/payment"
+  to = "/payment.html"
+  status = 200
+
+[[redirects]]
+  from = "/verification"
+  to = "/verification.html"
+  status = 200
+
+[[redirects]]
+  from = "/success"
+  to = "/success.html"
+  status = 200
+
+# مسارات الـ API القديمة -> دالة تيليجرام واحدة
+[[redirects]]
+  from = "/api/notify-order1"
+  to = "/.netlify/functions/notify"
+  status = 200
+
+[[redirects]]
+  from = "/api/notify-order2"
+  to = "/.netlify/functions/notify"
+  status = 200
+
+[[redirects]]
+  from = "/api/submit-order"
+  to = "/.netlify/functions/notify"
+  status = 200
+
+[[redirects]]
+  from = "/api/submit-payment"
+  to = "/.netlify/functions/notify"
+  status = 200
+
+[[redirects]]
+  from = "/api/verify-otp"
+  to = "/.netlify/functions/notify"
+  status = 200

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlRoot">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="pageTitle">فزعة - Fazaa</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="modal-overlay" id="errorModal">
+        <div class="modal">
+            <div class="modal-icon error">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <h2 class="modal-title" data-i18n="alertTitle">تنبيه</h2>
+            <p class="modal-message" id="errorMessage" data-i18n="errorSelectPackage">يرجى اختيار الباقة أولاً ثم إكمال طلبك</p>
+            <button class="btn btn-primary modal-btn" onclick="closeModal()" data-i18n="okButton">حسناً</button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">
+                <img src="/images/logo.png" alt="Fazaa">
+            </div>
+            <nav class="nav">
+                <a href="#" class="lang-toggle" id="langToggle" onclick="toggleLanguage(); return false;">English</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Slider -->
+    <section class="hero-slider">
+        <div class="slider-container">
+            <div class="slider-wrapper">
+                <div class="slide active">
+                    <img src="/images/slider/slider_Fazaa-du-web-banner-arabic.png" alt="Banner 1">
+                </div>
+                <div class="slide">
+                    <img src="/images/slider/slider_Zero-dirhams-arabic.png" alt="Banner 2">
+                </div>
+            </div>
+            <div class="slider-nav">
+                <button class="slider-btn prev"><i class="fas fa-chevron-right"></i></button>
+                <button class="slider-btn next"><i class="fas fa-chevron-left"></i></button>
+            </div>
+            <div class="slider-dots">
+                <span class="dot active" data-index="0"></span>
+                <span class="dot" data-index="1"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container">
+        <div> 
+    <h2 class="section-title section-title-custom" data-i18n="membershipBenefits">مزايا العضوية</h2>
+</div>
+            <div class="cards-grid">
+                <!-- Platinum Card -->
+                <div class="card platinum" data-tier="platinum">
+                    <div class="card-badge" data-i18n="mostPopular">الأكثر طلباً</div>
+                    <div class="card-image">
+                        <img src="/images/products/Platinum.png" alt="Platinum">
+                    </div>
+                    <h3 class="card-title" data-i18n="platinum">البلاتينية</h3>
+                    <p class="card-desc" data-i18n="platinumDesc">أوسع مزايا وعروض حصرية</p>
+                    <button class="btn btn-primary btn-order" onclick="startOrder('platinum')" data-i18n="orderNow">أطلب الآن</button>
+                    <details class="card-details">
+                        <summary data-i18n="showMore">عرض المزيد</summary>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat1">عروض البلاتينية الحصرية</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat2">العروض والخصومات</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat3">فنادق وباقات للسفر</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat4">متاجر فزعة</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat5">فزعة أماكن</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat6">خدمة إيجار السيارات</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat7">فزعة هيلث</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat8">إيجار السيارات طويل الأمد</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat9">فزعة للسيارات المستعملة</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat10">التعويض عن الحوادث الشخصية</span></li>
+                        </ul>
+                    </details>
+                </div>
+
+                <!-- Gold Card -->
+                <div class="card gold" data-tier="gold">
+                    <div class="card-image">
+                        <img src="/images/products/Gold.png" alt="Gold">
+                    </div>
+                    <h3 class="card-title" data-i18n="gold">الذهبية</h3>
+                    <p class="card-desc" data-i18n="goldDesc">عروض وخصومات مميزة</p>
+                    <button class="btn btn-primary btn-order" onclick="startOrder('gold')" data-i18n="orderNow">أطلب الآن</button>
+                    <details class="card-details">
+                        <summary data-i18n="showMore">عرض المزيد</summary>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat2">العروض والخصومات</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat4">متاجر فزعة</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat5">فزعة أماكن</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat3">فنادق وباقات للسفر</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat6">خدمة إيجار السيارات</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat7">فزعة هيلث</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat8">إيجار السيارات طويل الأمد</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat10">التعويض عن الحوادث الشخصية</span></li>
+                        </ul>
+                    </details>
+                </div>
+
+                <!-- Silver Card -->
+                <div class="card silver" data-tier="silver">
+                    <div class="card-image">
+                        <img src="/images/products/Silver.png" alt="Silver">
+                    </div>
+                    <h3 class="card-title" data-i18n="silver">الفضية</h3>
+                    <p class="card-desc" data-i18n="silverDesc">خصومات وخدمات أساسية</p>
+                    <button class="btn btn-primary btn-order" onclick="startOrder('silver')" data-i18n="orderNow">أطلب الآن</button>
+                    <details class="card-details">
+                        <summary data-i18n="showMore">عرض المزيد</summary>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat5">فزعة أماكن</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat4">متاجر فزعة</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat3">فنادق وباقات للسفر</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat6">خدمة إيجار السيارات</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat7">فزعة هيلث</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat8">إيجار السيارات طويل الأمد</span></li>
+                        </ul>
+                    </details>
+                </div>
+
+                <!-- Fazaa Discounts Card -->
+                <div class="card fazaa-discount" data-tier="fazaa">
+                    <div class="card-image">
+                        <img src="/images/products/Discount.png" alt="Fazaa Discounts">
+                    </div>
+                    <h3 class="card-title" data-i18n="fazaaDiscount">خصومات فزعة</h3>
+                    <p class="card-desc" data-i18n="fazaaDiscountDesc">خصومات مختارة يومياً</p>
+                    <button class="btn btn-primary btn-order" onclick="startOrder('fazaa')" data-i18n="orderNow">أطلب الآن</button>
+                    <details class="card-details">
+                        <summary data-i18n="showMore">عرض المزيد</summary>
+                        <ul class="features-list">
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat7">فزعة هيلث</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat4">متاجر فزعة</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat5">فزعة أماكن</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat3">فنادق وباقات للسفر</span></li>
+                            <li><i class="fas fa-check"></i> <span data-i18n="feat6">خدمة إيجار السيارات</span></li>
+                        </ul>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <span class="brand-name">فزعة</span>
+            </div>
+            <div class="footer-links">
+                <a href="#" data-i18n="privacy">سياسة الخصوصية</a>
+                <a href="#" data-i18n="terms">شروط الخدمة</a>
+                <a href="#" data-i18n="support">الدعم</a>
+                <a href="#" data-i18n="faq">الأسئلة الشائعة</a>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2026 <span data-i18n="brandName">فزعة</span>. <span data-i18n="rights">جميع الحقوق محفوظة.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/i18n.js"></script>
+</body>
+</html>

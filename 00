@@ -1,0 +1,113 @@
+<style>
+    /* ===== تنسيق الكروت العريض المخصص ===== */
+.cards-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.card {
+    display: flex;
+    flex-direction: row; /* الصورة يمين والنصوص يسار */
+    align-items: flex-start;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid #eee;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    position: relative;
+}
+
+/* 1. الصورة (في اليمين) */
+.card-image {
+    flex: 0 0 100px;
+    margin-right: 0px;
+}
+.card-image img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* 2. حاوية النصوص والأزرار (في اليسار) */
+.card-info-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+/* ترتيب النصوص */
+.card-title { font-size: 1.3rem; margin-bottom: 5px; }
+.card-desc { color: #666; font-size: 0.95rem; margin-bottom: 15px; }
+
+/* 3. حاوية الأزرار (في الأسفل) */
+.card-buttons {
+    display: flex;
+    gap: 50px;
+    margin-top: auto;
+}
+
+.btn-order {
+    padding: 8px 25px;
+    background: #8B1538;
+    color: white;
+    border-radius: 10px;
+    border: none;
+}
+
+.card-details summary {
+    padding: 8px 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+}
+/* التحكم في عرض الكرت البلاتيني */
+.card.platinum {
+    min-width: 400px;
+}
+
+/* التحكم في عرض الكرت الذهبي */
+.card.gold {
+    min-width: 400px;
+}
+
+/* التحكم في عرض الكرت الفضي */
+.card.silver {
+    min-width: 400px;
+}
+
+/* التحكم في كرت خصومات فزعة */
+.card.fazaa-discount {
+    min-width: 400px;
+}
+.cards-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* هذه الخاصية هي المسؤولة عن توسيط الكروت أفقياً */
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+}
+/* تنسيق الوصف ليكون في الأسفل جهة اليمين */
+.card-desc {
+    color: #666;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    
+    /* 1. تفعيل التموضع النسبي */
+    position: relative; 
+    
+    /* 2. التحكم في الموقع بدقة (استخدم القيم التي تناسبك) */
+    top: 30px;      /* تحكم في المسافة من الأعلى */
+    right: -90px;    /* تحكم في المسافة من اليمين */
+    
+    /* 3. إلغاء تأثيرات الـ Flex القديمة لكي لا تتداخل */
+    margin: 0 !important; 
+    align-self: auto !important; 
+}
+
+</style>

